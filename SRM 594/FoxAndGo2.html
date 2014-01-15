@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+	<style type="text/css">
+		body { font-family: Helvetica, Arial, Verdana, sans-serif; }
+		.heading { font-weight: bold; font-size: 28px; text-align: center; }
+		.section { padding-top: 10px; }
+		.section .section-title { font-weight: bold; font-size: 20px; color: grey; }
+        .problem-intro { padding-left: 20px; }
+        note, user-constraint { padding-left: 20px; }
+		type {
+			font-weight: bold;
+			font-family: monospace;
+		}
+		img {
+			float: none;
+			display: block;
+			width: 200px;
+			height: auto;
+			margin: 10px;
+			border: 0px solid #ccc;
+		}
+		ul {
+			list-style-type: none;
+			padding: 0px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+		ul.constraints li:before {
+			content: "-";
+			font-size: 16px;
+			font-family: monospace;
+			position:relative;
+			margin-left: 0px; /* optional, for multiline li element */
+			left: 10px;
+		}
+		ul.notes li:before {
+			content: "~";
+			font-size: 16px;
+			font-family: monospace;
+			font-weight: normal;
+			position:relative;
+			margin-left: 0px; /* optional, for multiline li element */
+			left: 10px;
+		}
+
+		li.testcase {
+			display: flex;
+			line-height: 16px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		li.testcase div.testcase-no {
+            min-width: 16px;
+			width: 16px;
+			height: 16px;
+			font-size: 16px;
+			line-height: 16px;
+			padding: 8px;
+			margin-right: 10px;
+			border-radius: 100%;
+			font-weight: bold;
+			text-align: center;
+			vertical-align: top;
+			border: 2px solid #ddd;
+			color: grey;
+		}
+		li.testcase span {
+			vertical-align: middle; 
+			text-align: center;
+			height: 15px;
+			line-height: 16px;
+			min-width: 45px;
+			border-radius: 5px;
+			padding: 0px;
+			padding-left: 5px;
+			padding-right: 5px;
+			margin-right: 10px;
+			display: inline-block;
+		}
+		li.testcase > .testcase-content > div { padding-bottom: 8px; }
+		li.testcase .tag {
+			background: #545454;
+			color: white;
+			font-family: Georgia;
+			font-size: 10px;
+			text-align: center;
+		}
+		li.testcase .testcase-input .tag { visibility: hidden; }
+		li.testcase .testcase-input .tag:first-child { visibility: visible; }
+		li.testcase .data {
+			background: #eee;
+			font-family: monospace;
+		}
+        li.testcase .testcase-comment {
+            margin: 0;
+            padding-left: 5px;
+        }
+        .testcase-comment p:first-child { margin-top: 0; }
+        .testcase-comment p:last-child { margin-bottom: 0; }
+	</style>
+
+    <title>Topcoder - SRM 594 - Problem 1000</title>
+</head>
+
+<body>
+	<div class="heading">
+        SRM 594 Div 2 - Problem 1000 <br/>
+        FoxAndGo2
+    </div>
+
+	<hr/>
+
+    <!-- Problem Statemnt -->
+    <div class="section">
+        <div class="section-title">Problem Statement</div>
+        <div class="problem-intro">
+            <intro escaped="1">Fox Ciel is teaching her friend Jiro to play Go.
+Ciel has just placed some white tokens onto a board.
+She now wants Jiro to find the best possible sequence of moves.
+(This is defined more precisely below.)<br></br>
+<br></br>
+<br></br>
+You are given a <type>String[]</type> <b>board</b>.
+Character j of element i of <b>board</b> represents the cell (i,j) of the board:
+'o' is a cell with a white token and '.' is an empty cell.
+At least one cell on the board will be empty. Note that there are currently no black tokens on the board.<br></br>
+<br></br>
+<br></br>
+Each Jiro's move consists of adding a single black token to the board.
+The token must be placed onto an empty cell.
+Once Jiro places the token, some white tokens will be removed from the board according to the rules described in the next paragraphs.<br></br>
+<br></br>
+<br></br>
+The tokens on the board can be divided into connected components using the following rules:
+If two tokens of the same color lie in cells that share an edge, they belong to the same component.
+Being in the same component is transitive: if X lies in the same component as Y and Y lies in the same component as Z, then X lies in the same component as Z.<br></br>
+<br></br>
+<br></br>
+Note that each component of tokens is either completely white or completely black. Each component of tokens is processed separately.
+For each component we check whether it is adjacent to an empty cell.
+(That is, whether there are two cells that share an edge such that one of them is empty and the other contains a token from the component we are processing.)
+If there is such an empty cell, the component is safe and its tokens remain on the board.
+If there is no such empty cell, the component is killed and all its tokens are removed from the board.<br></br><br></br>
+There are also the following additional rules:
+<ul>
+<li>All white components must be processed before black ones (in any order).</li>
+<li>If at least one white token was removed, then black components must not be processed at all.</li>
+<li>Otherwise, all black components must be processed (in any order).</li>
+<li>If at least one black token was removed, this is called a &quot;suicide move&quot;. Such moves are invalid and Jiro is not allowed to make them.</li>
+</ul>
+<br></br>
+<br></br>
+Jiro's score is the total number of white tokens removed from the board after each of his moves is evaluated.
+Return the maximal score he can get for the given board.
+</intro>
+        </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="section">
+        <div class="section-title">Notes</div>
+        <ul class="notes">
+                </ul>
+    </div>
+
+    <!-- Constraints -->
+    <div class="section">
+        <div class="section-title">Constraints</div>
+        <ul class="constraints">
+                    <li><user-constraint escaped="1">n will be between 2 and 19, inclusive.</user-constraint></li>
+                    <li><user-constraint escaped="1"><b>board</b> will contain exactly n elements.</user-constraint></li>
+                    <li><user-constraint escaped="1">Each element in <b>board</b> will contain exactly n characters.</user-constraint></li>
+                    <li><user-constraint escaped="1">Each character in <b>board</b> will be 'o' or '.'.</user-constraint></li>
+                    <li><user-constraint escaped="1">There will be at least 1 '.' in <b>board</b>.</user-constraint></li>
+                </ul>
+    </div>
+
+    <!-- Test cases -->
+    <div class="section">
+        <div class="section-title">Test cases</div>
+        <ul class="testcases">
+                        <li class="testcase">
+                <div class="testcase-no">0</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>board</b>: { "...", ".o.", "..." }</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">1</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment"><pre>
+.A.
+BoC
+.D.
+</pre>
+Jiro can put black pieces at A,B,C,D (in any order).</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">1</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>board</b>: { "o.", "oo" }</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">3</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">Jiro needs to place the black token into the empty cell. After that, the white component becomes unsafe and will be killed. The black component won't be processed, so the black token will remain on board.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">2</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>board</b>: { ".o.o.", "o.o.o", ".o.o.", "o.o.o", ".o.o." }</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">0</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">Regardless of which empty cell he chooses, he will never kill any white component with this single black token.
+On the other hand, his black token would always be killed.
+Therefore, Jiro has no valid move on this board.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">3</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>board</b>: { ".o.o.", "o.o.o", ".o.o.", "o.o.o", "....." }</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">10</span>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">4</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>board</b>: { ".o.o.o.o.o.", "o.ooo.ooo.o", ".o.......o.", "oo.......oo", ".o...o...o.", "o...o.o...o", ".o...o...o.", "oo.......oo", ".o.......o.", "o.ooo.ooo.o", ".o.o.o.o.o." }</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">4</span>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">5</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>board</b>: { "...ooo.....", "...o.o.....", ".ooo.ooo...", ".o.....o...", ".ooo.ooo...", "...o.o.....", "...ooo.....", "....o......", "....o...ooo", "....ooooo.o", "........ooo" }</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">38</span>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">6</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>board</b>: { "ooooooooooo", "o.........o", "o...ooo...o", "o...o.o...o", "o...ooo...o", "o....o....o", "o....oooooo", "o..........", "o.......ooo", "o.......o.o", "ooooooooooo" }</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">0</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">Sometimes, making no moves at all is an optimal strategy.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">7</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>board</b>: { "oo.o.ooo.o..o..", "...ooo.o..oo.oo", "o..o.o.ooo.o..o", "oo.......oo.ooo", "..oo.o.o.o.ooo.", "..oo..oo..o.ooo", "oo.o.oo..o.oooo", ".oo.o..ooo.o.oo", "o..o.o.o.o.oo..", ".oo.oo...o....o", "o.o.oo....oo..o", ".o.o..o.oo..ooo", "o.o.o..o..o....", "ooo.oooooooo..o", "o..oo.o..o.ooo." }</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">60</span>
+                    </div>
+                                    </div>
+            </li>
+                    </ul>
+    </div>
+
+    <hr>
+
+    This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved.
+</body>
+</html>

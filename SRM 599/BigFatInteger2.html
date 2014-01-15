@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+	<style type="text/css">
+		body { font-family: Helvetica, Arial, Verdana, sans-serif; }
+		.heading { font-weight: bold; font-size: 28px; text-align: center; }
+		.section { padding-top: 10px; }
+		.section .section-title { font-weight: bold; font-size: 20px; color: grey; }
+        .problem-intro { padding-left: 20px; }
+        note, user-constraint { padding-left: 20px; }
+		type {
+			font-weight: bold;
+			font-family: monospace;
+		}
+		img {
+			float: none;
+			display: block;
+			width: 200px;
+			height: auto;
+			margin: 10px;
+			border: 0px solid #ccc;
+		}
+		ul {
+			list-style-type: none;
+			padding: 0px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+		ul.constraints li:before {
+			content: "-";
+			font-size: 16px;
+			font-family: monospace;
+			position:relative;
+			margin-left: 0px; /* optional, for multiline li element */
+			left: 10px;
+		}
+		ul.notes li:before {
+			content: "~";
+			font-size: 16px;
+			font-family: monospace;
+			font-weight: normal;
+			position:relative;
+			margin-left: 0px; /* optional, for multiline li element */
+			left: 10px;
+		}
+
+		li.testcase {
+			display: flex;
+			line-height: 16px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		li.testcase div.testcase-no {
+            min-width: 16px;
+			width: 16px;
+			height: 16px;
+			font-size: 16px;
+			line-height: 16px;
+			padding: 8px;
+			margin-right: 10px;
+			border-radius: 100%;
+			font-weight: bold;
+			text-align: center;
+			vertical-align: top;
+			border: 2px solid #ddd;
+			color: grey;
+		}
+		li.testcase span {
+			vertical-align: middle; 
+			text-align: center;
+			height: 15px;
+			line-height: 16px;
+			min-width: 45px;
+			border-radius: 5px;
+			padding: 0px;
+			padding-left: 5px;
+			padding-right: 5px;
+			margin-right: 10px;
+			display: inline-block;
+		}
+		li.testcase > .testcase-content > div { padding-bottom: 8px; }
+		li.testcase .tag {
+			background: #545454;
+			color: white;
+			font-family: Georgia;
+			font-size: 10px;
+			text-align: center;
+		}
+		li.testcase .testcase-input .tag { visibility: hidden; }
+		li.testcase .testcase-input .tag:first-child { visibility: visible; }
+		li.testcase .data {
+			background: #eee;
+			font-family: monospace;
+		}
+        li.testcase .testcase-comment {
+            margin: 0;
+            padding-left: 5px;
+        }
+        .testcase-comment p:first-child { margin-top: 0; }
+        .testcase-comment p:last-child { margin-bottom: 0; }
+	</style>
+
+    <title>Topcoder - SRM 599 - Problem 500</title>
+</head>
+
+<body>
+	<div class="heading">
+        SRM 599 Div 2 - Problem 500 <br/>
+        BigFatInteger2
+    </div>
+
+	<hr/>
+
+    <!-- Problem Statemnt -->
+    <div class="section">
+        <div class="section-title">Problem Statement</div>
+        <div class="problem-intro">
+            <intro escaped="1"><p><i>This problem statement contains superscipts that may not display properly outside the applet.</i></p>
+<br></br>
+You are given four <type>int</type>s <b>A</b>, <b>B</b>, <b>C</b> and <b>D</b>. Return &quot;divisible&quot; (quotes for clarity) if <b>A</b><sup><b>B</b></sup> is divisible by <b>C</b><sup><b>D</b></sup>. Return &quot;not divisible&quot; otherwise.</intro>
+        </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="section">
+        <div class="section-title">Notes</div>
+        <ul class="notes">
+                    <li><note escaped="1">The return value is case-sensitive.</note></li>
+                    <li><note escaped="1">Positive integer y divides a positive integer x if and only if there is a positive integer z such that y*z=x. In particular, for each positive integer x, both 1 and x divide x.</note></li>
+                </ul>
+    </div>
+
+    <!-- Constraints -->
+    <div class="section">
+        <div class="section-title">Constraints</div>
+        <ul class="constraints">
+                    <li><user-constraint escaped="1"><b>A</b>, <b>B</b>, <b>C</b> and <b>D</b> will each be between 1 and 1,000,000,000 (10<sup>9</sup>), inclusive.</user-constraint></li>
+                </ul>
+    </div>
+
+    <!-- Test cases -->
+    <div class="section">
+        <div class="section-title">Test cases</div>
+        <ul class="testcases">
+                        <li class="testcase">
+                <div class="testcase-no">0</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>A</b>: 6</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>B</b>: 1</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>C</b>: 2</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>D</b>: 1</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">"divisible"</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">Here, <b>A</b><sup><b>B</b></sup> = 6<sup>1</sup> = 6 and <b>C</b><sup><b>D</b></sup> = 2<sup>1</sup> = 2. 6 is divisible by 2.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">1</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>A</b>: 2</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>B</b>: 1</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>C</b>: 6</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>D</b>: 1</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">"not divisible"</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">2 is not divisible by 6.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">2</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>A</b>: 1000000000</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>B</b>: 1000000000</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>C</b>: 1000000000</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>D</b>: 200000000</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">"divisible"</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">Now the numbers are huge, but we can see that <b>A</b><sup><b>B</b></sup> is divisible by <b>C</b><sup><b>D</b></sup> from the fact that <b>A</b>=<b>C</b> and <b>B</b>&gt;<b>D</b>.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">3</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>A</b>: 8</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>B</b>: 100</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>C</b>: 4</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>D</b>: 200</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">"not divisible"</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">We can rewrite 8<sup>100</sup> as (2<sup>3</sup>)<sup>100</sup> = 2<sup>300</sup>.
+Similarly, 4<sup>200</sup> = (2<sup>2</sup>)<sup>200</sup> = 2<sup>400</sup>.
+Thus, 8<sup>100</sup> is not divisible by 4<sup>200</sup>.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">4</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>A</b>: 999999937</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>B</b>: 1000000000</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>C</b>: 999999929</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>D</b>: 1</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">"not divisible"</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">Here <b>A</b> and <b>C</b> are distinct prime numbers, which means <b>A</b><sup><b>B</b></sup> cannot have <b>C</b> as its divisor.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">5</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>A</b>: 2</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>B</b>: 2</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>C</b>: 4</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>D</b>: 1</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">"divisible"</span>
+                    </div>
+                                    </div>
+            </li>
+                    </ul>
+    </div>
+
+    <hr>
+
+    This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved.
+</body>
+</html>

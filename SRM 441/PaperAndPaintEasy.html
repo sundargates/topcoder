@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+	<style type="text/css">
+		body { font-family: Helvetica, Arial, Verdana, sans-serif; }
+		.heading { font-weight: bold; font-size: 28px; text-align: center; }
+		.section { padding-top: 10px; }
+		.section .section-title { font-weight: bold; font-size: 20px; color: grey; }
+        .problem-intro { padding-left: 20px; }
+        note, user-constraint { padding-left: 20px; }
+		type {
+			font-weight: bold;
+			font-family: monospace;
+		}
+		img {
+			float: none;
+			display: block;
+			width: 200px;
+			height: auto;
+			margin: 10px;
+			border: 0px solid #ccc;
+		}
+		ul {
+			list-style-type: none;
+			padding: 0px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+		ul.constraints li:before {
+			content: "-";
+			font-size: 16px;
+			font-family: monospace;
+			position:relative;
+			margin-left: 0px; /* optional, for multiline li element */
+			left: 10px;
+		}
+		ul.notes li:before {
+			content: "~";
+			font-size: 16px;
+			font-family: monospace;
+			font-weight: normal;
+			position:relative;
+			margin-left: 0px; /* optional, for multiline li element */
+			left: 10px;
+		}
+
+		li.testcase {
+			display: flex;
+			line-height: 16px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		li.testcase div.testcase-no {
+            min-width: 16px;
+			width: 16px;
+			height: 16px;
+			font-size: 16px;
+			line-height: 16px;
+			padding: 8px;
+			margin-right: 10px;
+			border-radius: 100%;
+			font-weight: bold;
+			text-align: center;
+			vertical-align: top;
+			border: 2px solid #ddd;
+			color: grey;
+		}
+		li.testcase span {
+			vertical-align: middle; 
+			text-align: center;
+			height: 15px;
+			line-height: 16px;
+			min-width: 45px;
+			border-radius: 5px;
+			padding: 0px;
+			padding-left: 5px;
+			padding-right: 5px;
+			margin-right: 10px;
+			display: inline-block;
+		}
+		li.testcase > .testcase-content > div { padding-bottom: 8px; }
+		li.testcase .tag {
+			background: #545454;
+			color: white;
+			font-family: Georgia;
+			font-size: 10px;
+			text-align: center;
+		}
+		li.testcase .testcase-input .tag { visibility: hidden; }
+		li.testcase .testcase-input .tag:first-child { visibility: visible; }
+		li.testcase .data {
+			background: #eee;
+			font-family: monospace;
+		}
+        li.testcase .testcase-comment {
+            margin: 0;
+            padding-left: 5px;
+        }
+        .testcase-comment p:first-child { margin-top: 0; }
+        .testcase-comment p:last-child { margin-bottom: 0; }
+	</style>
+
+    <title>Topcoder - SRM 441 - Problem 500</title>
+</head>
+
+<body>
+	<div class="heading">
+        SRM 441 Div 2 - Problem 500 <br/>
+        PaperAndPaintEasy
+    </div>
+
+	<hr/>
+
+    <!-- Problem Statemnt -->
+    <div class="section">
+        <div class="section-title">Problem Statement</div>
+        <div class="problem-intro">
+            <intro escaped="1">Onise likes to play with paper and paint.  He has a piece of paper with dimensions <b>width</b> x <b>height</b>.  He does the following steps with the paper:
+
+<ol>
+<li>Fold the paper along the line x = <b>xfold</b> (the left side of the paper is folded over the right side).</li>
+<li>Divide the paper vertically into <b>cnt</b>+1 equal sections.  Then, <b>cnt</b> times, take the topmost section and fold it over the section below it.</li>
+<li>Paint a rectangle with the lower-left corner at (<b>x1</b>, <b>y1</b>) and the upper-right corner at (<b>x2</b>, <b>y2</b>).  Note that (0, 0) is now the lower-left corner of the paper in its current folded state, not its original state.  The paint will seep through all the layers of the folded paper.  See the image below for clarification.</li>
+<li>Unfold the paper.</li>
+</ol>
+
+For example, let's say Onise has a piece of paper that is 5 x 6.  He performs the described steps where <b>xfold</b> is 2, <b>cnt</b> is 2, and the coordinates of the painted rectangle's corners are (1, 1) and (3, 2).  The following will happen (note that the paper starts out blue in the images and gets painted white):
+
+<center><img src="http://www.topcoder.com/contest/problem/PaperAndPaint/1.png"></img>&amp;nbsp;
+<img src="http://www.topcoder.com/contest/problem/PaperAndPaint/2.png"></img>&amp;nbsp;
+<img src="http://www.topcoder.com/contest/problem/PaperAndPaint/3.png"></img>&amp;nbsp;
+<img src="http://www.topcoder.com/contest/problem/PaperAndPaint/4.png"></img>&amp;nbsp;
+<img src="http://www.topcoder.com/contest/problem/PaperAndPaint/5.png"></img>&amp;nbsp;
+<img src="http://www.topcoder.com/contest/problem/PaperAndPaint/6.png"></img></center><br></br><br></br>
+
+You are given <type>int</type>s <b>width</b> and <b>height</b>, and <type>int</type>s <b>xfold</b>, <b>cnt</b>, <b>x1</b>, <b>y1</b>, <b>x2</b> and <b>y2</b>.  Return the total area of of the paper that is not covered in paint after Onise is done.</intro>
+        </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="section">
+        <div class="section-title">Notes</div>
+        <ul class="notes">
+                </ul>
+    </div>
+
+    <!-- Constraints -->
+    <div class="section">
+        <div class="section-title">Constraints</div>
+        <ul class="constraints">
+                    <li><user-constraint escaped="1"><b>width</b> and <b>height</b> will be between 1 and 10^9, inclusive.</user-constraint></li>
+                    <li><user-constraint escaped="1"><b>xfold</b> will be between 0 and <b>width</b>, inclusive.</user-constraint></li>
+                    <li><user-constraint escaped="1"><b>cnt</b> will be between 0 and 1000, inclusive.</user-constraint></li>
+                    <li><user-constraint escaped="1"><b>cnt</b>+1 will be a divisor of <b>height</b>.</user-constraint></li>
+                    <li><user-constraint escaped="1">0 &amp;lt;= <b>x1</b> &amp;lt; <b>x2</b> &amp;lt;= max(<b>xfold</b>, <b>width</b>-<b>xfold</b>) and 0 &amp;lt;= <b>y1</b> &amp;lt; <b>y2</b> &amp;lt;= <b>height</b>/(<b>cnt</b>+1).</user-constraint></li>
+                </ul>
+    </div>
+
+    <!-- Test cases -->
+    <div class="section">
+        <div class="section-title">Test cases</div>
+        <ul class="testcases">
+                        <li class="testcase">
+                <div class="testcase-no">0</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>width</b>: 5</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>height</b>: 6</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>xfold</b>: 2</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>cnt</b>: 2</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>x1</b>: 1</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>y1</b>: 1</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>x2</b>: 3</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>y2</b>: 2</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">21</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">The example from the problem statement.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">1</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>width</b>: 3</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>height</b>: 13</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>xfold</b>: 1</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>cnt</b>: 0</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>x1</b>: 1</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>y1</b>: 8</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>x2</b>: 2</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>y2</b>: 12</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">35</span>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">2</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>width</b>: 12</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>height</b>: 12</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>xfold</b>: 7</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>cnt</b>: 3</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>x1</b>: 3</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>y1</b>: 1</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>x2</b>: 6</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>y2</b>: 2</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">124</span>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">3</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>width</b>: 4</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>height</b>: 5</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>xfold</b>: 4</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>cnt</b>: 0</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>x1</b>: 0</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>y1</b>: 0</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>x2</b>: 1</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>y2</b>: 1</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">19</span>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">4</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>width</b>: 4</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>height</b>: 8</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>xfold</b>: 4</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>cnt</b>: 3</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>x1</b>: 0</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>y1</b>: 1</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>x2</b>: 2</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>y2</b>: 2</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">24</span>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">5</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>width</b>: 4</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>height</b>: 8</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>xfold</b>: 3</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>cnt</b>: 0</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>x1</b>: 1</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>y1</b>: 1</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>x2</b>: 3</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>y2</b>: 2</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">30</span>
+                    </div>
+                                    </div>
+            </li>
+                    </ul>
+    </div>
+
+    <hr>
+
+    This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved.
+</body>
+</html>

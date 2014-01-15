@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+	<style type="text/css">
+		body { font-family: Helvetica, Arial, Verdana, sans-serif; }
+		.heading { font-weight: bold; font-size: 28px; text-align: center; }
+		.section { padding-top: 10px; }
+		.section .section-title { font-weight: bold; font-size: 20px; color: grey; }
+        .problem-intro { padding-left: 20px; }
+        note, user-constraint { padding-left: 20px; }
+		type {
+			font-weight: bold;
+			font-family: monospace;
+		}
+		img {
+			float: none;
+			display: block;
+			width: 200px;
+			height: auto;
+			margin: 10px;
+			border: 0px solid #ccc;
+		}
+		ul {
+			list-style-type: none;
+			padding: 0px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+		ul.constraints li:before {
+			content: "-";
+			font-size: 16px;
+			font-family: monospace;
+			position:relative;
+			margin-left: 0px; /* optional, for multiline li element */
+			left: 10px;
+		}
+		ul.notes li:before {
+			content: "~";
+			font-size: 16px;
+			font-family: monospace;
+			font-weight: normal;
+			position:relative;
+			margin-left: 0px; /* optional, for multiline li element */
+			left: 10px;
+		}
+
+		li.testcase {
+			display: flex;
+			line-height: 16px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		li.testcase div.testcase-no {
+            min-width: 16px;
+			width: 16px;
+			height: 16px;
+			font-size: 16px;
+			line-height: 16px;
+			padding: 8px;
+			margin-right: 10px;
+			border-radius: 100%;
+			font-weight: bold;
+			text-align: center;
+			vertical-align: top;
+			border: 2px solid #ddd;
+			color: grey;
+		}
+		li.testcase span {
+			vertical-align: middle; 
+			text-align: center;
+			height: 15px;
+			line-height: 16px;
+			min-width: 45px;
+			border-radius: 5px;
+			padding: 0px;
+			padding-left: 5px;
+			padding-right: 5px;
+			margin-right: 10px;
+			display: inline-block;
+		}
+		li.testcase > .testcase-content > div { padding-bottom: 8px; }
+		li.testcase .tag {
+			background: #545454;
+			color: white;
+			font-family: Georgia;
+			font-size: 10px;
+			text-align: center;
+		}
+		li.testcase .testcase-input .tag { visibility: hidden; }
+		li.testcase .testcase-input .tag:first-child { visibility: visible; }
+		li.testcase .data {
+			background: #eee;
+			font-family: monospace;
+		}
+        li.testcase .testcase-comment {
+            margin: 0;
+            padding-left: 5px;
+        }
+        .testcase-comment p:first-child { margin-top: 0; }
+        .testcase-comment p:last-child { margin-bottom: 0; }
+	</style>
+
+    <title>Topcoder - SRM 599 - Problem 950</title>
+</head>
+
+<body>
+	<div class="heading">
+        SRM 599 Div 2 - Problem 950 <br/>
+        SimilarNames2
+    </div>
+
+	<hr/>
+
+    <!-- Problem Statemnt -->
+    <div class="section">
+        <div class="section-title">Problem Statement</div>
+        <div class="problem-intro">
+            <intro escaped="1">Fox Ciel has a list of names on her computer. In this problem, a name is simply a non-empty string
+of lowercase letters. All names in her list are distinct.
+<br></br>
+<br></br>
+One day, when she left her seat, she forgot to lock her computer.
+Then, Lun the mischievous dog appeared, and randomly shuffled the order of the names in her list.
+<br></br>
+<br></br>
+Now, Ciel has to restore the original order of names using her memory. You are given a <type>String[]</type> <b>names</b>
+and an <type>int</type> <b>L</b>. <b>names</b> contains all names in the shuffled list in the order they appear.
+<b>L</b> describes Ciel's memory of the original list. She remembers that, for each i between 0 and
+<b>L</b>-2, inclusive, the i-th (0-indexed) name in the original list was a prefix of the (i+1)-th name.
+<br></br>
+<br></br>
+Let X be the number of possible orders of the names in the original list that are consistent
+with Ciel's memory. Calculate and return the value (X modulo 1,000,000,007). X can be 0, which means
+Ciel's memory is inconsistent with the names in the list.</intro>
+        </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="section">
+        <div class="section-title">Notes</div>
+        <ul class="notes">
+                    <li><note escaped="1">A prefix of a string is the result of erasing zero or more characters from the right end of that string.</note></li>
+                </ul>
+    </div>
+
+    <!-- Constraints -->
+    <div class="section">
+        <div class="section-title">Constraints</div>
+        <ul class="constraints">
+                    <li><user-constraint escaped="1"><b>names</b> will contain between 2 and 50 elements, inclusive.</user-constraint></li>
+                    <li><user-constraint escaped="1">Each element of <b>names</b> will contain between 1 and 50 characters, inclusive.</user-constraint></li>
+                    <li><user-constraint escaped="1">Each character of each element of <b>names</b> will be a lowercase letter ('a'-'z').</user-constraint></li>
+                    <li><user-constraint escaped="1">Elements of <b>names</b> will be distinct.</user-constraint></li>
+                    <li><user-constraint escaped="1"><b>L</b> will be between 1 and n, inclusive, where n is the number of elements in <b>names</b>.</user-constraint></li>
+                </ul>
+    </div>
+
+    <!-- Test cases -->
+    <div class="section">
+        <div class="section-title">Test cases</div>
+        <ul class="testcases">
+                        <li class="testcase">
+                <div class="testcase-no">0</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>names</b>: { "kenta", "kentaro", "ken" }</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>L</b>: 2</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">3</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">Here, Ciel's list contains 3 names. She remembers that the 0-th name was a prefix of the 1-st name in the original list. Here are the all possible orders of names in the original list:
+<ul>
+<li>ken, kenta, kentaro</li>
+<li>ken, kentaro, kenta</li>
+<li>kenta, kentaro, ken</li>
+</ul>
+Note that it is possible that the order of the names in the original list coincides with that of the shuffled list.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">1</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>names</b>: { "hideo", "hideto", "hideki", "hide" }</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>L</b>: 2</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">6</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">Again, she remembers that the 0-th name was a prefix of the 1-st name in the original list. The only thing we can be sure is that the 0-th name was &quot;hide&quot;.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">2</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>names</b>: { "aya", "saku", "emi", "ayane", "sakura", "emika", "sakurako" }</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>L</b>: 3</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">24</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">This time, she remembers not only the fact that the 0-th name was a prefix of the 1-st name, but also the fact that the 1-st name was a prefix of the 2-nd name. The first 3 names should be &quot;saku&quot;, &quot;sakura&quot;, &quot;sakurako&quot; in this order.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">3</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>names</b>: { "taro", "jiro", "hanako" }</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>L</b>: 2</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">0</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">No name is a prefix of another name in this case, so her memory is inconsistent.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">4</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>names</b>: { "alice", "bob", "charlie" }</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>L</b>: 1</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">6</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment"><b>L</b> = 1 means that she actually remembers nothing.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">5</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>names</b>: { "ryota", "ryohei", "ryotaro", "ryo", "ryoga", "ryoma", "ryoko", "ryosuke", "ciel", "lun", "ryuta", "ryuji", "ryuma", "ryujiro", "ryusuke", "ryutaro", "ryu", "ryuhei", "ryuichi", "evima" }</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>L</b>: 3</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">276818566</span>
+                    </div>
+                                    </div>
+            </li>
+                    </ul>
+    </div>
+
+    <hr>
+
+    This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved.
+</body>
+</html>

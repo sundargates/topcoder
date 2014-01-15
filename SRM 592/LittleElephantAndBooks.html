@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+	<style type="text/css">
+		body { font-family: Helvetica, Arial, Verdana, sans-serif; }
+		.heading { font-weight: bold; font-size: 28px; text-align: center; }
+		.section { padding-top: 10px; }
+		.section .section-title { font-weight: bold; font-size: 20px; color: grey; }
+        .problem-intro { padding-left: 20px; }
+        note, user-constraint { padding-left: 20px; }
+		type {
+			font-weight: bold;
+			font-family: monospace;
+		}
+		img {
+			float: none;
+			display: block;
+			width: 200px;
+			height: auto;
+			margin: 10px;
+			border: 0px solid #ccc;
+		}
+		ul {
+			list-style-type: none;
+			padding: 0px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+		ul.constraints li:before {
+			content: "-";
+			font-size: 16px;
+			font-family: monospace;
+			position:relative;
+			margin-left: 0px; /* optional, for multiline li element */
+			left: 10px;
+		}
+		ul.notes li:before {
+			content: "~";
+			font-size: 16px;
+			font-family: monospace;
+			font-weight: normal;
+			position:relative;
+			margin-left: 0px; /* optional, for multiline li element */
+			left: 10px;
+		}
+
+		li.testcase {
+			display: flex;
+			line-height: 16px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		li.testcase div.testcase-no {
+            min-width: 16px;
+			width: 16px;
+			height: 16px;
+			font-size: 16px;
+			line-height: 16px;
+			padding: 8px;
+			margin-right: 10px;
+			border-radius: 100%;
+			font-weight: bold;
+			text-align: center;
+			vertical-align: top;
+			border: 2px solid #ddd;
+			color: grey;
+		}
+		li.testcase span {
+			vertical-align: middle; 
+			text-align: center;
+			height: 15px;
+			line-height: 16px;
+			min-width: 45px;
+			border-radius: 5px;
+			padding: 0px;
+			padding-left: 5px;
+			padding-right: 5px;
+			margin-right: 10px;
+			display: inline-block;
+		}
+		li.testcase > .testcase-content > div { padding-bottom: 8px; }
+		li.testcase .tag {
+			background: #545454;
+			color: white;
+			font-family: Georgia;
+			font-size: 10px;
+			text-align: center;
+		}
+		li.testcase .testcase-input .tag { visibility: hidden; }
+		li.testcase .testcase-input .tag:first-child { visibility: visible; }
+		li.testcase .data {
+			background: #eee;
+			font-family: monospace;
+		}
+        li.testcase .testcase-comment {
+            margin: 0;
+            padding-left: 5px;
+        }
+        .testcase-comment p:first-child { margin-top: 0; }
+        .testcase-comment p:last-child { margin-bottom: 0; }
+	</style>
+
+    <title>Topcoder - SRM 592 - Problem 250</title>
+</head>
+
+<body>
+	<div class="heading">
+        SRM 592 Div 2 - Problem 250 <br/>
+        LittleElephantAndBooks
+    </div>
+
+	<hr/>
+
+    <!-- Problem Statemnt -->
+    <div class="section">
+        <div class="section-title">Problem Statement</div>
+        <div class="problem-intro">
+            <intro escaped="1"><p>
+Little Elephant from the Zoo of Lviv has a bunch of books.
+You are given a <type>int[]</type> <b>pages</b>.
+Each element of <b>pages</b> is the number of pages in one of those books.
+There are no two books with the same number of pages.
+</p>
+<p>
+</p>
+<p>
+You are also given a <type>int</type> <b>number</b>.
+As a homework from the teacher, Little Elephant must read exactly <b>number</b> of his books during the summer.
+(Little Elephant has strictly more than <b>number</b> books.)
+</p>
+<p>
+</p>
+<p>
+All other elephants in the school also got the exact same homework.
+Little Elephant knows that the other elephants are lazy: 
+they will simply pick the shortest <b>number</b> books, so that they have to read the smallest possible total number of pages.
+Little Elephant wants to be a good student and read a bit more than the other elephants.
+He wants to pick the subset of books with the second smallest number of pages.
+In other words, he wants to pick a subset of books with the following properties:
+<ul>
+<li>There are exactly <b>number</b> books in the chosen subset.</li>
+<li>The total number of pages of those books is greater than the smallest possible total number of pages.</li>
+<li>The total number of pages of those books is as small as possible (given the above conditions).</li>
+</ul>
+</p>
+<p>
+</p>
+<p>
+Return the total number of pages Little Elephant will have to read.
+</p></intro>
+        </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="section">
+        <div class="section-title">Notes</div>
+        <ul class="notes">
+                </ul>
+    </div>
+
+    <!-- Constraints -->
+    <div class="section">
+        <div class="section-title">Constraints</div>
+        <ul class="constraints">
+                    <li><user-constraint escaped="1"><b>pages</b> will contain between 2 and 50 elements, inclusive.</user-constraint></li>
+                    <li><user-constraint escaped="1">Each element of <b>pages</b> will be between 1 and 100, inclusive.</user-constraint></li>
+                    <li><user-constraint escaped="1">There will be no two equal elements in <b>pages</b>.</user-constraint></li>
+                    <li><user-constraint escaped="1"><b>number</b> will be between 1 and N-1, inclusive, where N is the number of elements in <b>pages</b>.</user-constraint></li>
+                </ul>
+    </div>
+
+    <!-- Test cases -->
+    <div class="section">
+        <div class="section-title">Test cases</div>
+        <ul class="testcases">
+                        <li class="testcase">
+                <div class="testcase-no">0</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>pages</b>: { 1, 2 }</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>number</b>: 1</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">2</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">There are two books: one with 1 page, the other with 2 pages.
+As <b>number</b>=1, each of the elephants has to read one book.
+The lazy elephants will read the 1-page book, so our Little Elephant should read the 2-page one.
+Thus, the number of pages read by Little Elephant is 2.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">1</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>pages</b>: { 74, 7, 4, 47, 44 }</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>number</b>: 3</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">58</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">The lazy elephants will read books 1, 2, and 4 (0-based indices).
+Their total number of pages is 7+4+44 = 55.
+Little Elephant should pick books 1, 2, and 3, for a total of 7+4+47 = 58 pages.
+(Note that Little Elephant is allowed to pick any subset, except for the minimal one. 
+In particular, he may read some of the books read by the other elephants.)</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">2</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>pages</b>: { 3, 1, 9, 7, 2, 8, 6, 4, 5 }</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>number</b>: 7</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">29</span>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">3</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>pages</b>: { 74, 86, 32, 13, 100, 67, 77 }</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>number</b>: 2</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">80</span>
+                    </div>
+                                    </div>
+            </li>
+                    </ul>
+    </div>
+
+    <hr>
+
+    This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved.
+</body>
+</html>

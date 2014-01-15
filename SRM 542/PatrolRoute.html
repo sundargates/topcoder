@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+	<style type="text/css">
+		body { font-family: Helvetica, Arial, Verdana, sans-serif; }
+		.heading { font-weight: bold; font-size: 28px; text-align: center; }
+		.section { padding-top: 10px; }
+		.section .section-title { font-weight: bold; font-size: 20px; color: grey; }
+        .problem-intro { padding-left: 20px; }
+        note, user-constraint { padding-left: 20px; }
+		type {
+			font-weight: bold;
+			font-family: monospace;
+		}
+		img {
+			float: none;
+			display: block;
+			width: 200px;
+			height: auto;
+			margin: 10px;
+			border: 0px solid #ccc;
+		}
+		ul {
+			list-style-type: none;
+			padding: 0px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+		ul.constraints li:before {
+			content: "-";
+			font-size: 16px;
+			font-family: monospace;
+			position:relative;
+			margin-left: 0px; /* optional, for multiline li element */
+			left: 10px;
+		}
+		ul.notes li:before {
+			content: "~";
+			font-size: 16px;
+			font-family: monospace;
+			font-weight: normal;
+			position:relative;
+			margin-left: 0px; /* optional, for multiline li element */
+			left: 10px;
+		}
+
+		li.testcase {
+			display: flex;
+			line-height: 16px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		li.testcase div.testcase-no {
+            min-width: 16px;
+			width: 16px;
+			height: 16px;
+			font-size: 16px;
+			line-height: 16px;
+			padding: 8px;
+			margin-right: 10px;
+			border-radius: 100%;
+			font-weight: bold;
+			text-align: center;
+			vertical-align: top;
+			border: 2px solid #ddd;
+			color: grey;
+		}
+		li.testcase span {
+			vertical-align: middle; 
+			text-align: center;
+			height: 15px;
+			line-height: 16px;
+			min-width: 45px;
+			border-radius: 5px;
+			padding: 0px;
+			padding-left: 5px;
+			padding-right: 5px;
+			margin-right: 10px;
+			display: inline-block;
+		}
+		li.testcase > .testcase-content > div { padding-bottom: 8px; }
+		li.testcase .tag {
+			background: #545454;
+			color: white;
+			font-family: Georgia;
+			font-size: 10px;
+			text-align: center;
+		}
+		li.testcase .testcase-input .tag { visibility: hidden; }
+		li.testcase .testcase-input .tag:first-child { visibility: visible; }
+		li.testcase .data {
+			background: #eee;
+			font-family: monospace;
+		}
+        li.testcase .testcase-comment {
+            margin: 0;
+            padding-left: 5px;
+        }
+        .testcase-comment p:first-child { margin-top: 0; }
+        .testcase-comment p:last-child { margin-bottom: 0; }
+	</style>
+
+    <title>Topcoder - SRM 542 - Problem 500</title>
+</head>
+
+<body>
+	<div class="heading">
+        SRM 542 Div 2 - Problem 500 <br/>
+        PatrolRoute
+    </div>
+
+	<hr/>
+
+    <!-- Problem Statemnt -->
+    <div class="section">
+        <div class="section-title">Problem Statement</div>
+        <div class="problem-intro">
+            <intro escaped="1"><p>There are exactly <b>X</b>*<b>Y</b> places in the Planar Kingdom: For each pair of integers (x, y) such that 0 &amp;lt;= x &amp;lt; <b>X</b> and 0 &amp;lt;= y &amp;lt; <b>Y</b> there is a place with coordinates (x, y). When a citizen of the kingdom wants to move from (x1, y1) to (x2, y2), the required time is |x1 - x2| + |y1 - y2| (where |t| denotes the absolute value of t).</p>
+<p></p>
+<p>In order to improve stability in the kingdom, the police wants to introduce a specific <i>patrol route</i>. The route will contain exactly three places A, B, and C.
+A policeman will visit these three places and verify that everything is as it should be. The three places that determine a valid route must satisfy the following criteria::
+<ul>
+<li>x-coordinates of A, B and C are pairwise distinct.</li>
+<li>y-coordinates of A, B and C are pairwise distinct.</li>
+<li>Let T be the total time required to follow along the route: first from A to B, then from B to C and finally from C back to A. T must be between <b>minT</b> and <b>maxT</b>, inclusive.</li>
+</ul></p>
+<p></p>
+You are given the <type>int</type>s <b>X</b>, <b>Y</b>, <b>minT</b>, and <b>maxT</b>. Return the number of different patrol routes that satisfy these criteria, modulo 1,000,000,007. Two routes are considered to be different if there is a place that belongs to one of them, but does not belong to the other one.</intro>
+        </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="section">
+        <div class="section-title">Notes</div>
+        <ul class="notes">
+                </ul>
+    </div>
+
+    <!-- Constraints -->
+    <div class="section">
+        <div class="section-title">Constraints</div>
+        <ul class="constraints">
+                    <li><user-constraint escaped="1"><b>X</b> and <b>Y</b> will each be between 3 and 4,000, inclusive.</user-constraint></li>
+                    <li><user-constraint escaped="1"><b>minT</b> will be between 1 and 20,000, inclusive.</user-constraint></li>
+                    <li><user-constraint escaped="1"><b>maxT</b> will be between <b>minT</b> and 20,000, inclusive.</user-constraint></li>
+                </ul>
+    </div>
+
+    <!-- Test cases -->
+    <div class="section">
+        <div class="section-title">Test cases</div>
+        <ul class="testcases">
+                        <li class="testcase">
+                <div class="testcase-no">0</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>X</b>: 3</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>Y</b>: 3</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>minT</b>: 1</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>maxT</b>: 20000</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">6</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">The time requirement is very flexible in this case. There are 6 patrol routes where both x and y coordinates of places are pairwise distinct.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">1</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>X</b>: 3</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>Y</b>: 3</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>minT</b>: 4</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>maxT</b>: 7</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">0</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">The time of 7 is too small for any patrol route.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">2</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>X</b>: 4</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>Y</b>: 6</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>minT</b>: 9</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>maxT</b>: 12</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">264</span>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">3</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>X</b>: 7</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>Y</b>: 5</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>minT</b>: 13</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>maxT</b>: 18</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">1212</span>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">4</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>X</b>: 4000</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>Y</b>: 4000</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>minT</b>: 4000</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>maxT</b>: 14000</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">859690013</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">Don't forget about the modulo!</div>
+                    </div>
+                                    </div>
+            </li>
+                    </ul>
+    </div>
+
+    <hr>
+
+    This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved.
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+	<style type="text/css">
+		body { font-family: Helvetica, Arial, Verdana, sans-serif; }
+		.heading { font-weight: bold; font-size: 28px; text-align: center; }
+		.section { padding-top: 10px; }
+		.section .section-title { font-weight: bold; font-size: 20px; color: grey; }
+        .problem-intro { padding-left: 20px; }
+        note, user-constraint { padding-left: 20px; }
+		type {
+			font-weight: bold;
+			font-family: monospace;
+		}
+		img {
+			float: none;
+			display: block;
+			width: 200px;
+			height: auto;
+			margin: 10px;
+			border: 0px solid #ccc;
+		}
+		ul {
+			list-style-type: none;
+			padding: 0px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+		ul.constraints li:before {
+			content: "-";
+			font-size: 16px;
+			font-family: monospace;
+			position:relative;
+			margin-left: 0px; /* optional, for multiline li element */
+			left: 10px;
+		}
+		ul.notes li:before {
+			content: "~";
+			font-size: 16px;
+			font-family: monospace;
+			font-weight: normal;
+			position:relative;
+			margin-left: 0px; /* optional, for multiline li element */
+			left: 10px;
+		}
+
+		li.testcase {
+			display: flex;
+			line-height: 16px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		li.testcase div.testcase-no {
+            min-width: 16px;
+			width: 16px;
+			height: 16px;
+			font-size: 16px;
+			line-height: 16px;
+			padding: 8px;
+			margin-right: 10px;
+			border-radius: 100%;
+			font-weight: bold;
+			text-align: center;
+			vertical-align: top;
+			border: 2px solid #ddd;
+			color: grey;
+		}
+		li.testcase span {
+			vertical-align: middle; 
+			text-align: center;
+			height: 15px;
+			line-height: 16px;
+			min-width: 45px;
+			border-radius: 5px;
+			padding: 0px;
+			padding-left: 5px;
+			padding-right: 5px;
+			margin-right: 10px;
+			display: inline-block;
+		}
+		li.testcase > .testcase-content > div { padding-bottom: 8px; }
+		li.testcase .tag {
+			background: #545454;
+			color: white;
+			font-family: Georgia;
+			font-size: 10px;
+			text-align: center;
+		}
+		li.testcase .testcase-input .tag { visibility: hidden; }
+		li.testcase .testcase-input .tag:first-child { visibility: visible; }
+		li.testcase .data {
+			background: #eee;
+			font-family: monospace;
+		}
+        li.testcase .testcase-comment {
+            margin: 0;
+            padding-left: 5px;
+        }
+        .testcase-comment p:first-child { margin-top: 0; }
+        .testcase-comment p:last-child { margin-bottom: 0; }
+	</style>
+
+    <title>Topcoder - SRM 601 - Problem 1000</title>
+</head>
+
+<body>
+	<div class="heading">
+        SRM 601 Div 2 - Problem 1000 <br/>
+        WinterAndReindeers
+    </div>
+
+	<hr/>
+
+    <!-- Problem Statemnt -->
+    <div class="section">
+        <div class="section-title">Problem Statement</div>
+        <div class="problem-intro">
+            <intro escaped="1"><p>
+It's winter time! Time to play some games.
+</p>
+<p>
+</p>
+<p>
+Four reindeers are playing the following game.
+The first three of them choose three non-empty strings: A, B, and C. (The strings are not necessarily distinct.)
+Then, the fourth one (and it happens to be the youngest one) finds a string S that satisfies the following conditions:
+</p>
+<ul>
+<li>
+S is a subsequence of A. (I.e., either S equals A, or S can be obtained from A by removing some of its characters.)
+</li>
+<li>
+S is a subsequence of B.
+</li>
+<li>
+C is a (contiguous) substring of S.
+</li>
+<li>
+There is no string longer than S that satisfies the previous three conditions.
+</li>
+</ul>
+<p>
+</p>
+<p>
+You are given three <type>String[]</type>s <b>allA</b>, <b>allB</b> and <b>allC</b>.
+Concatenate all elements of <b>allA</b>, <b>allB</b> and <b>allC</b> to obtain strings A, B and C, respectively.
+Return the length of the string S.
+If there is no such string, return 0.
+</p></intro>
+        </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="section">
+        <div class="section-title">Notes</div>
+        <ul class="notes">
+                </ul>
+    </div>
+
+    <!-- Constraints -->
+    <div class="section">
+        <div class="section-title">Constraints</div>
+        <ul class="constraints">
+                    <li><user-constraint escaped="1"><b>allA</b>, <b>allB</b> and <b>allC</b> will each contain between 1 and 50 elements, inclusive.</user-constraint></li>
+                    <li><user-constraint escaped="1">Each element of <b>allA</b>, <b>allB</b> and <b>allC</b> will contain between 1 and 50 characters, inclusive.</user-constraint></li>
+                    <li><user-constraint escaped="1">Each element of <b>allA</b>, <b>allB</b> and <b>allC</b> will consist only of uppercase English letters ('A'-'Z').</user-constraint></li>
+                </ul>
+    </div>
+
+    <!-- Test cases -->
+    <div class="section">
+        <div class="section-title">Test cases</div>
+        <ul class="testcases">
+                        <li class="testcase">
+                <div class="testcase-no">0</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>allA</b>: { "X" }</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>allB</b>: { "X", "Y" }</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>allC</b>: { "X" }</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">1</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">In this case, A = &quot;X&quot;, B = &quot;XY&quot;, C = &quot;X&quot;. The longest possible string that satisfies conditions from the statement is &quot;X&quot;. Thus, the answer is 1.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">1</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>allA</b>: { "ABCXD" }</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>allB</b>: { "BCDEF" }</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>allC</b>: { "CD" }</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">3</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">The longest possible string in this case is &quot;BCD&quot;.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">2</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>allA</b>: { "WE", "LOVE" }</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>allB</b>: { "WORKING", "FOR", "SANTA" }</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>allC</b>: { "JK" }</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">0</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">No string satisfies all criteria in this case. Thus, the answer is 0.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">3</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>allA</b>: { "ABCDE" }</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>allB</b>: { "CDEAB" }</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>allC</b>: { "B" }</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">2</span>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">4</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>allA</b>: { "ABCABDEGAXAHDJBAAHFJDXBB", "ABHFHCDALFDJDBBA", "BABBAXAXXX" }</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>allB</b>: { "ABLOCBAXBAHAJDXBIJKA", "JBABCDAHKFIUDALPJAH", "AABACX" }</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>allC</b>: { "AXBADXBBAB", "CDD" }</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">23</span>
+                    </div>
+                                    </div>
+            </li>
+                    </ul>
+    </div>
+
+    <hr>
+
+    This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved.
+</body>
+</html>

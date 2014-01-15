@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+	<style type="text/css">
+		body { font-family: Helvetica, Arial, Verdana, sans-serif; }
+		.heading { font-weight: bold; font-size: 28px; text-align: center; }
+		.section { padding-top: 10px; }
+		.section .section-title { font-weight: bold; font-size: 20px; color: grey; }
+        .problem-intro { padding-left: 20px; }
+        note, user-constraint { padding-left: 20px; }
+		type {
+			font-weight: bold;
+			font-family: monospace;
+		}
+		img {
+			float: none;
+			display: block;
+			width: 200px;
+			height: auto;
+			margin: 10px;
+			border: 0px solid #ccc;
+		}
+		ul {
+			list-style-type: none;
+			padding: 0px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+		ul.constraints li:before {
+			content: "-";
+			font-size: 16px;
+			font-family: monospace;
+			position:relative;
+			margin-left: 0px; /* optional, for multiline li element */
+			left: 10px;
+		}
+		ul.notes li:before {
+			content: "~";
+			font-size: 16px;
+			font-family: monospace;
+			font-weight: normal;
+			position:relative;
+			margin-left: 0px; /* optional, for multiline li element */
+			left: 10px;
+		}
+
+		li.testcase {
+			display: flex;
+			line-height: 16px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		li.testcase div.testcase-no {
+            min-width: 16px;
+			width: 16px;
+			height: 16px;
+			font-size: 16px;
+			line-height: 16px;
+			padding: 8px;
+			margin-right: 10px;
+			border-radius: 100%;
+			font-weight: bold;
+			text-align: center;
+			vertical-align: top;
+			border: 2px solid #ddd;
+			color: grey;
+		}
+		li.testcase span {
+			vertical-align: middle; 
+			text-align: center;
+			height: 15px;
+			line-height: 16px;
+			min-width: 45px;
+			border-radius: 5px;
+			padding: 0px;
+			padding-left: 5px;
+			padding-right: 5px;
+			margin-right: 10px;
+			display: inline-block;
+		}
+		li.testcase > .testcase-content > div { padding-bottom: 8px; }
+		li.testcase .tag {
+			background: #545454;
+			color: white;
+			font-family: Georgia;
+			font-size: 10px;
+			text-align: center;
+		}
+		li.testcase .testcase-input .tag { visibility: hidden; }
+		li.testcase .testcase-input .tag:first-child { visibility: visible; }
+		li.testcase .data {
+			background: #eee;
+			font-family: monospace;
+		}
+        li.testcase .testcase-comment {
+            margin: 0;
+            padding-left: 5px;
+        }
+        .testcase-comment p:first-child { margin-top: 0; }
+        .testcase-comment p:last-child { margin-bottom: 0; }
+	</style>
+
+    <title>Topcoder - SRM 290 - Problem 1000</title>
+</head>
+
+<body>
+	<div class="heading">
+        SRM 290 Div 2 - Problem 1000 <br/>
+        GalaxyTrip
+    </div>
+
+	<hr/>
+
+    <!-- Problem Statemnt -->
+    <div class="section">
+        <div class="section-title">Problem Statement</div>
+        <div class="problem-intro">
+            <intro><p>It's the year 2059. You have some free time in May this year and want to visit an interesting galaxy. You will need some machines during your trip and you are wondering how many of them can you take.</p>
+
+<p>There are a number of machines in a store.  Each machine may need some other machines to work properly, and you want all the machines you take to work. Luckily for you, in the year 2053, a special rule was introduced to make customers' lives easier.  The rule says that if a machine A depends on another machine B, then machine B also depends on machine A.</p>
+
+<p>You want to buy K different machines such that all of them will work properly.  You are given a <type>String[]</type> <b>dependencies</b> describing the dependencies between the machines.  Element i of <b>dependencies</b> is a space delimited list of machines that machine i is dependent on.  Return a <type>int[]</type> with all possible positive values for K in ascending order.</p>
+
+<br></br><br></br>
+ Example: <pre> {&quot;1 2&quot;, &quot;0&quot;, &quot;0&quot;, &quot;&quot;} </pre>
+ <ul>
+ <li>Machine 0 needs machines 1 and 2 to work</li>
+ <li>Machine 1 needs machine 0 to work</li>
+ <li>Machine 2 needs machine 0 to work</li>
+ <li>Machine 3 does not need any other machine to work</li>
+ </ul>
+
+
+<p>The allowed K values are 1 (you take only machine 3), 3 (you take machines 0,1,2) and 4 (you take all the machines). So you should return {1,3,4}.</p>
+</intro>
+        </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="section">
+        <div class="section-title">Notes</div>
+        <ul class="notes">
+                    <li><note>First machine has index 0, second has index 1 and so on.</note></li>
+                </ul>
+    </div>
+
+    <!-- Constraints -->
+    <div class="section">
+        <div class="section-title">Constraints</div>
+        <ul class="constraints">
+                    <li><user-constraint><b>dependencies</b> contains between 1 and 30 elements, inclusive.</user-constraint></li>
+                    <li><user-constraint>Each element of <b>dependencies</b> contains between 0 and 50 characters, inclusive.</user-constraint></li>
+                    <li><user-constraint>Each element of <b>dependencies</b> is a space delimited list of integers.</user-constraint></li>
+                    <li><user-constraint>Each integer in <b>dependencies</b> is between 0 and the number of elements in <b>dependencies</b> - 1, inclusive, and contains no extra leading zeros.</user-constraint></li>
+                    <li><user-constraint>Each element of <b>dependencies</b> contains no duplicate values.</user-constraint></li>
+                    <li><user-constraint>If element i of <b>dependencies</b> contains the value j, then element j of <b>dependencies</b> contains the value i.</user-constraint></li>
+                    <li><user-constraint>Element i of <b>dependencies</b> does not contain the value i.</user-constraint></li>
+                </ul>
+    </div>
+
+    <!-- Test cases -->
+    <div class="section">
+        <div class="section-title">Test cases</div>
+        <ul class="testcases">
+                        <li class="testcase">
+                <div class="testcase-no">0</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>dependencies</b>: { "1 2", "0", "0", "" }</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">{ 1, 3, 4 }</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">The example from the problem statement.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">1</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>dependencies</b>: { "1 2", "0 2", "0 1" }</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">{ 3 }</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">We have to take all three machines.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">2</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>dependencies</b>: { "", "", "", "" }</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">{ 1, 2, 3, 4 }</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">We can take any number of these machines since there are no dependencies.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">3</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>dependencies</b>: { "4 2", "3", "0 4", "1", "0 2", "6", "5" }</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">{ 2, 3, 4, 5, 7 }</span>
+                    </div>
+                                    </div>
+            </li>
+                    </ul>
+    </div>
+
+    <hr>
+
+    This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved.
+</body>
+</html>

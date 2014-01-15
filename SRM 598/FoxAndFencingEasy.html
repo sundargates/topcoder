@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+	<style type="text/css">
+		body { font-family: Helvetica, Arial, Verdana, sans-serif; }
+		.heading { font-weight: bold; font-size: 28px; text-align: center; }
+		.section { padding-top: 10px; }
+		.section .section-title { font-weight: bold; font-size: 20px; color: grey; }
+        .problem-intro { padding-left: 20px; }
+        note, user-constraint { padding-left: 20px; }
+		type {
+			font-weight: bold;
+			font-family: monospace;
+		}
+		img {
+			float: none;
+			display: block;
+			width: 200px;
+			height: auto;
+			margin: 10px;
+			border: 0px solid #ccc;
+		}
+		ul {
+			list-style-type: none;
+			padding: 0px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+		ul.constraints li:before {
+			content: "-";
+			font-size: 16px;
+			font-family: monospace;
+			position:relative;
+			margin-left: 0px; /* optional, for multiline li element */
+			left: 10px;
+		}
+		ul.notes li:before {
+			content: "~";
+			font-size: 16px;
+			font-family: monospace;
+			font-weight: normal;
+			position:relative;
+			margin-left: 0px; /* optional, for multiline li element */
+			left: 10px;
+		}
+
+		li.testcase {
+			display: flex;
+			line-height: 16px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		li.testcase div.testcase-no {
+            min-width: 16px;
+			width: 16px;
+			height: 16px;
+			font-size: 16px;
+			line-height: 16px;
+			padding: 8px;
+			margin-right: 10px;
+			border-radius: 100%;
+			font-weight: bold;
+			text-align: center;
+			vertical-align: top;
+			border: 2px solid #ddd;
+			color: grey;
+		}
+		li.testcase span {
+			vertical-align: middle; 
+			text-align: center;
+			height: 15px;
+			line-height: 16px;
+			min-width: 45px;
+			border-radius: 5px;
+			padding: 0px;
+			padding-left: 5px;
+			padding-right: 5px;
+			margin-right: 10px;
+			display: inline-block;
+		}
+		li.testcase > .testcase-content > div { padding-bottom: 8px; }
+		li.testcase .tag {
+			background: #545454;
+			color: white;
+			font-family: Georgia;
+			font-size: 10px;
+			text-align: center;
+		}
+		li.testcase .testcase-input .tag { visibility: hidden; }
+		li.testcase .testcase-input .tag:first-child { visibility: visible; }
+		li.testcase .data {
+			background: #eee;
+			font-family: monospace;
+		}
+        li.testcase .testcase-comment {
+            margin: 0;
+            padding-left: 5px;
+        }
+        .testcase-comment p:first-child { margin-top: 0; }
+        .testcase-comment p:last-child { margin-bottom: 0; }
+	</style>
+
+    <title>Topcoder - SRM 598 - Problem 1000</title>
+</head>
+
+<body>
+	<div class="heading">
+        SRM 598 Div 2 - Problem 1000 <br/>
+        FoxAndFencingEasy
+    </div>
+
+	<hr/>
+
+    <!-- Problem Statemnt -->
+    <div class="section">
+        <div class="section-title">Problem Statement</div>
+        <div class="problem-intro">
+            <intro escaped="1">Fox Ciel is playing a board game with her friend Squirrel Liss.
+The game is played on an infinite strip of paper.
+The strip of paper is divided into consecutive cells.
+Each cell has an integer coordinate.
+Formally, for each integer i, the left neighbor of cell i is cell (i-1) and the right neighbor of cell i is cell (i+1).
+<br></br>
+<br></br>
+<br></br>
+Each of the players has a single token called the fencer.
+At the beginning of the game, Ciel's fencer is in cell 0 and Liss's fencer is in cell <b>d</b>.
+Each of the fencers has a limit: its maximum move length.
+For Ciel's fencer the maximum move length is <b>mov1</b> and for Liss's fencer it is <b>mov2</b>.
+<br></br>
+<br></br>
+<br></br>
+The players take alternating turns.
+Ciel goes first.
+In each turn the current player moves her fencer.
+The distance between the original cell and the destination cell must be at most equal to the fencer's maximum move length.
+(It is also allowed to leave the fencer in the same cell.)
+If the current player moves her fencer into the cell with the other fencer, the current player's fencer scores a hit and wins the game.
+<br></br>
+<br></br>
+<br></br>
+You are given the <type>int</type>s <b>mov1</b>, <b>mov2</b>, and <b>d</b>.
+Return &quot;Ciel&quot; (quotes for clarity) if Fox Ciel has a winning strategy, &quot;Liss&quot; if Squirrel Liss has a winning strategy, and &quot;Draw&quot; otherwise.</intro>
+        </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="section">
+        <div class="section-title">Notes</div>
+        <ul class="notes">
+                </ul>
+    </div>
+
+    <!-- Constraints -->
+    <div class="section">
+        <div class="section-title">Constraints</div>
+        <ul class="constraints">
+                    <li><user-constraint escaped="1"><b>mov1</b> will be between 1 and 100,000,000, inclusive.</user-constraint></li>
+                    <li><user-constraint escaped="1"><b>mov2</b> will be between 1 and 100,000,000, inclusive.</user-constraint></li>
+                    <li><user-constraint escaped="1"><b>d</b> will be between 1 and 100,000,000, inclusive.</user-constraint></li>
+                </ul>
+    </div>
+
+    <!-- Test cases -->
+    <div class="section">
+        <div class="section-title">Test cases</div>
+        <ul class="testcases">
+                        <li class="testcase">
+                <div class="testcase-no">0</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>mov1</b>: 1</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>mov2</b>: 58</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>d</b>: 1</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">"Ciel"</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">Ciel can win in her first turn by moving her fencer one cell to the right.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">1</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>mov1</b>: 100</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>mov2</b>: 100</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>d</b>: 100000000</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">"Draw"</span>
+                    </div>
+                                        <div style="display: flex;">
+                        <span class="tag">comment</span>
+                        <div class="testcase-comment">Liss can avoid getting hit forever by repeating Ciel's moves. For example, whenever Ciel moves her fencer 47 cells to the right, Liss also moves her fencer 47 cells to the right. Ciel has a similar strategy: in her first turn she can move her fencer arbitrarily and in each of the following turns she will repeat Liss's previous move. Therefore the game ends in a draw.</div>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">2</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>mov1</b>: 100</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>mov2</b>: 150</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>d</b>: 100000000</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">"Draw"</span>
+                    </div>
+                                    </div>
+            </li>
+                        <li class="testcase">
+                <div class="testcase-no">3</div>
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                    
+                                            <span class="tag">input</span>
+                        <span class="data"><b>mov1</b>: 100</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>mov2</b>: 250</span>
+                        <br/>
+                                            <span class="tag">input</span>
+                        <span class="data"><b>d</b>: 100000000</span>
+                        <br/>
+                                        </div>
+                    <div>
+                        <span class="tag">output</span>
+                        <span class="data">"Liss"</span>
+                    </div>
+                                    </div>
+            </li>
+                    </ul>
+    </div>
+
+    <hr>
+
+    This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved.
+</body>
+</html>
